@@ -2,6 +2,9 @@ import express from "express";
 import cors from "cors";
 import productRoutes from "./routes/products.routes";
 import folioRoutes from "./routes/folios.routes";
+import escolaridadRoutes from "./routes/escolaridad.routes";
+import estadocivilRoutes from "./routes/estadocivil.routes";
+import identificacionRoutes from "./routes/identificacion.routes";
 import helperRoutes from "./routes/helpers.routers";
 import morgan from "morgan";
 
@@ -21,5 +24,8 @@ app.use(express.json());
 // Routes
 app.use("/api", helperRoutes);
 app.use("/api", folioRoutes);
+app.use("/api", escolaridadRoutes);
+app.use("/api", estadocivilRoutes);
+app.use("/api", identificacionRoutes);
 
 export default app;
