@@ -6,6 +6,7 @@ import escolaridadRoutes from "./routes/escolaridad.routes";
 import estadocivilRoutes from "./routes/estadocivil.routes";
 import identificacionRoutes from "./routes/identificacion.routes";
 import helperRoutes from "./routes/helpers.routers";
+import dictamenmedicoRoutes from "./routes/dictamenmedico.routes";
 import morgan from "morgan";
 
 import config from "./config";
@@ -24,8 +25,12 @@ app.use(express.json());
 // Routes
 app.use("/api", helperRoutes);
 app.use("/api", folioRoutes);
+<<<<<<< HEAD
 app.use("/api", escolaridadRoutes);
 app.use("/api", estadocivilRoutes);
 app.use("/api", identificacionRoutes);
 
+=======
+app.use("/api",dictamenmedicoRoutes)
+>>>>>>> a61da89576a37c696b0eeed36773f59b1bca14b2
 export default app;
