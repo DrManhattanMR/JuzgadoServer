@@ -1,0 +1,47 @@
+@api = http://localhost:3200/api/folios
+
+{{api}}
+
+### add a product
+POST http://localhost:3200/api/folios
+Content-Type: application/json
+
+{
+"IdFolioCaso":"454545",
+"IdFolioIPH":"45454545",
+"FechaArresto":"2022-12-12",
+"HoraArresto":"Mon, 11 Oct 2021 20:48:13 GMT",
+"FechaSalidaBarandilla":"2023-12-12",
+"HoraSalidaBarandilla":"Mon, 11 Oct 2021 20:48:13 GMT",
+"NombreCompletoInfractor":"Alfredo Leyva",
+"TipoIdentificacion":1,
+"NumeroIdentificacion":"197354682",
+"Edad":30,
+"Sexo":1,
+"DomicilioCompleto":"Culiacan",
+"EstadoCivil":2,
+"Escolaridad":1,
+"Ocupacion":"Developer"
+}
+
+### get product
+{{api}}
+
+### delete product 
+DELETE {{api}}/10
+
+### get count
+{{api}}/count
+
+### update
+PUT {{api}}/11
+Content-Type: application/json
+
+{
+    "IdFolioCaso":"123321",
+"IdFolioIPH":"321123",
+"FechaArresto":"2022-12-12",
+"HoraArresto":"13:30:00",
+"FechaSalidaBarandilla":"2023-12-12",
+"HoraSalidaBarandilla":"14:00:00",
+}
