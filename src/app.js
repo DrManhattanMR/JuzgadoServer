@@ -3,6 +3,7 @@ import cors from "cors";
 import productRoutes from "./routes/products.routes";
 import folioRoutes from "./routes/folios.routes";
 import helperRoutes from "./routes/helpers.routers";
+import dictamenmedicoRoutes from "./routes/dictamenmedico.routes";
 import morgan from "morgan";
 
 import config from "./config";
@@ -21,5 +22,5 @@ app.use(express.json());
 // Routes
 app.use("/api", helperRoutes);
 app.use("/api", folioRoutes);
-
+app.use("/api",dictamenmedicoRoutes)
 export default app;
