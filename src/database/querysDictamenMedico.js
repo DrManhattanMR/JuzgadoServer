@@ -8,5 +8,6 @@ export const querysDictamenMedico = {
     ObtenerTodosDictamenesMedicos: "SELECT A.Id, A.IdFolioCaso, A.IdFolioIPH, A.FechaDictamen, A.HoraDictamen, A.MedicoCargo, A.Resolucion, B.NombreCompletoInfractor, B.DomicilioCompleto " +
         "FROM TblDicMedico A, TblInfractor B WHERE 1=1 " +
         "AND A.IdFolioCaso = B.IdFolioCaso AND A.IdFolioIPH = B.IdFolioIPH",
-    EliminarDictamenMedico: " DELETE FROM TblDicMedico WHERE Id = @Id "
+    EliminarDictamenMedico: " DELETE FROM TblDicMedico WHERE Id = @Id ",
+    ActualizarDictamenMedico:" "
 };
