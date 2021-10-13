@@ -20,12 +20,12 @@ export const getDictamenMedico = async (req, res) => {
             .input("IdFolioCaso", req.params.IdFolioCaso)
             .input("IdFolioIPH", req.params.IdFolioIPH)
             .query(querysDictamenMedico.ObtDictamenMedico);
-            if(result.recordset.length>0){
-                return res.json(result.recordset[0]);
-            }
-            else{
-                return res.status(500).json({ msg: "No existe Dictamen" });
-            }
+        if (result.recordset.length > 0) {
+            return res.json(result.recordset[0]);
+        }
+        else {
+            return res.status(500).json({ msg: "No existe Dictamen" });
+        }
     } catch (error) {
         res.status(500);
         res.send(error.message);
@@ -45,6 +45,23 @@ export const createNewDictamenMedico = async (req, res) => {
             .input("Resolucion", sql.Text, Resolucion)
             .query(querysDictamenMedico.AgregarDictamen);
         res.status(200).json({ msg: "Created" });
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+};
+export const eliminarDictamenMedico = async (req, res) => {
+    try {
+        const pool = await getConnection();
+
+        const result = await pool
+            .request()
+            .input("Id", req.params.Id)
+            .query(querysDictamenMedico.EliminarDictamenMedico);
+
+        if (result.rowsAffected[0] === 0) return res.sendStatus(404);
+
+        res.status(200).json({ msg: "Deleted" });
     } catch (error) {
         res.status(500);
         res.send(error.message);

@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { getDictamenMedico,createNewDictamenMedico,getAllDictamenesMedicos } from "../controllers/dictamenmedico.controller";
+import { getDictamenMedico, createNewDictamenMedico, getAllDictamenesMedicos, eliminarDictamenMedico } from "../controllers/dictamenmedico.controller";
 
 const router = Router();
 
 router.get("/dictamenmedico/:IdFolioCaso/:IdFolioIPH", getDictamenMedico);
 router.get("/dictamenmedico", getAllDictamenesMedicos);
 router.post("/dictamenmedico", createNewDictamenMedico);
-
+router.delete("/dictamenmedico/:Id", eliminarDictamenMedico);
 
 export default router;
