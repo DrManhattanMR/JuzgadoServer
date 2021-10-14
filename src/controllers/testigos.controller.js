@@ -9,7 +9,7 @@ export const getTestigosByCaso = async (req, res) => {
             .input("IdFolioIPH", req.params.IdFolioIPH)
             .query(querysTestigo.getTestigosByCaso);
         if (result.recordset.length > 0) {
-            return res.json(result.recordset[0]);
+            return res.json(result.recordset);
         }
         else {
             return res.status(500).json({ msg: "No existen testigos" });
