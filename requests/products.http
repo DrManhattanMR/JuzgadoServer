@@ -57,6 +57,7 @@ Content-Type: application/json
 "FechaSalidaBarandilla":"2023-12-12",
 "HoraSalidaBarandilla":"14:00:00",
 }
+<<<<<<< HEAD
 ###
 POST http://localhost:3200/api/testigo
 Content-Type: application/json
@@ -71,3 +72,15 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3200/api/testigo/F123/F123
+=======
+
+### 
+PUT http://localhost:3200/api/dictamenpsic/3
+Content-Type: application/json
+
+ {
+"id":3,
+"personaCargo": "EMANUEL",
+"resolucion": "DEV"
+  }
+>>>>>>> origin/ErickBranch

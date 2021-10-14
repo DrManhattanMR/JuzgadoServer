@@ -8,6 +8,7 @@ import identificacionRoutes from "./routes/identificacion.routes";
 import helperRoutes from "./routes/helpers.routers";
 import dictamenmedicoRoutes from "./routes/dictamenmedico.routes";
 import testigoRoutes from "./routes/testigos.routes"
+import dictamenpsicRoutes from "./routes/dictamenpsic.routes";
 import morgan from "morgan";
 
 import config from "./config";
@@ -30,6 +31,7 @@ app.use("/api", escolaridadRoutes);
 app.use("/api", estadocivilRoutes);
 app.use("/api", identificacionRoutes);
 
-app.use("/api", dictamenmedicoRoutes);
 app.use("/api", testigoRoutes);
+app.use("/api", dictamenmedicoRoutes);
+app.use("/api", dictamenpsicRoutes);
 export default app;
