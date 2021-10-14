@@ -1,4 +1,4 @@
-@api = http://localhost:3200/api/dictamenmedico
+@api = http://localhost:3200/api/testigo
 
 {{api}}
 
@@ -40,7 +40,7 @@ Content-Type: application/json
 {{api}}/1/2
 
 ### delete product 
-DELETE {{api}}/10
+DELETE {{api}}/5
 
 ### get count
 {{api}}/count
@@ -57,3 +57,17 @@ Content-Type: application/json
 "FechaSalidaBarandilla":"2023-12-12",
 "HoraSalidaBarandilla":"14:00:00",
 }
+###
+POST http://localhost:3200/api/testigo
+Content-Type: application/json
+
+{
+"IdFolioCaso":"F123",
+"IdFolioIPH":"F123",
+"NombreCompletoTestigo":"Captain American",
+"DireccionTestigo":"New York, Torre Stark",
+"OcupacionTestigo":"Avenger"
+}
+
+###
+GET http://localhost:3200/api/testigo/F123/F123

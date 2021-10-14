@@ -37,3 +37,20 @@ export const createTestigoCaso = async (req, res) => {
         res.send(error.message);
     }
 };
+export const eliminarTestigo = async (req, res) => {
+    try {
+        const pool = await getConnection();
+
+        const result = await pool
+            .request()
+            .input("id", req.params.id)
+            .query(querysTestigo.deleteTestigo);
+
+        if (result.rowsAffected[0] === 0) return res.sendStatus(404);
+
+        res.status(200).json({ msg: "Deleted" });
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+};

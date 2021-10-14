@@ -5,5 +5,5 @@ export const querysTestigo = {
     postTestigo: " INSERT INTO TblTestigos " +
         " (IdFolioCaso, IdFolioIPH, NombreCompletoTestigo, DireccionTestigo, OcupacionTestigo) " +
         " VALUES (@IdFolioCaso, @IdFolioIPH, @NombreCompletoTestigo, @DireccionTestigo, @OcupacionTestigo) ",
-    deleteTestigo: ""
+    deleteTestigo: " DELETE FROM TblTestigos WHERE IdTestigo = @id"
 }
