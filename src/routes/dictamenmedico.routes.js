@@ -3,7 +3,7 @@ import { getDictamenMedico, createNewDictamenMedico, getAllDictamenesMedicos, el
 
 const router = Router();
 
-router.get("/dictamenmedico/:IdFolioCaso/:IdFolioIPH", getDictamenMedico);
+router.get("/dictamenmedico/:IdFolioCaso", getDictamenMedico);
 router.get("/dictamenmedico", getAllDictamenesMedicos);
 router.post("/dictamenmedico", createNewDictamenMedico);
 router.delete("/dictamenmedico/:Id", eliminarDictamenMedico);

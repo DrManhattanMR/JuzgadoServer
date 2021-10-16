@@ -18,7 +18,7 @@ export const getDictamenMedico = async (req, res) => {
         const result = await pool
             .request()
             .input("IdFolioCaso", req.params.IdFolioCaso)
-            .input("IdFolioIPH", req.params.IdFolioIPH)
+            //.input("IdFolioIPH", req.params.IdFolioIPH)
             .query(querysDictamenMedico.ObtDictamenMedico);
         if (result.recordset.length > 0) {
             return res.json(result.recordset[0]);
@@ -32,13 +32,13 @@ export const getDictamenMedico = async (req, res) => {
     }
 };
 export const createNewDictamenMedico = async (req, res) => {
-    const { IdFolioCaso, IdFolioIPH, FechaDictamen, HoraDictamen, MedicoCargo, Resolucion } = req.body;
+    const { IdFolioCaso, FechaDictamen, HoraDictamen, MedicoCargo, Resolucion } = req.body;
     try {
         const pool = await getConnection();
         await pool
             .request()
             .input("IdFolioCaso", sql.VarChar, IdFolioCaso)
-            .input("IdFolioIPH", sql.VarChar, IdFolioIPH)
+            //.input("IdFolioIPH", sql.VarChar, IdFolioIPH)
             .input("FechaDictamen", sql.Date, FechaDictamen)
             .input("HoraDictamen", sql.Time, HoraDictamen)
             .input("MedicoCargo", sql.VarChar, MedicoCargo)

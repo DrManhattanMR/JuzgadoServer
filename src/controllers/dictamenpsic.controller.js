@@ -28,7 +28,7 @@ export const getDictamenPsic = async (req, res) => {
     const result = await pool
       .request()
       .input("IdFolioCaso", req.params.IdFolioCaso)
-      .input("IdFolioIPH", req.params.IdFolioIPH)
+      //.input("IdFolioIPH", req.params.IdFolioIPH)
       .query(querysDictamenPsic.ObtDictamenPsic);
     if (result.recordset.length > 0) {
       return res.json(result.recordset[0]);
@@ -44,7 +44,6 @@ export const getDictamenPsic = async (req, res) => {
 export const createNewDictamenPsic = async (req, res) => {
   const {
     IdFolioCaso,
-    IdFolioIPH,
     FechaDictamen,
     HoraDictamen,
     PersonaCargo,
@@ -55,7 +54,7 @@ export const createNewDictamenPsic = async (req, res) => {
     await pool
       .request()
       .input("IdFolioCaso", sql.VarChar, IdFolioCaso)
-      .input("IdFolioIPH", sql.VarChar, IdFolioIPH)
+      //.input("IdFolioIPH", sql.VarChar, IdFolioIPH)
       .input("FechaDictamen", sql.Date, FechaDictamen)
       .input("HoraDictamen", sql.Time, HoraDictamen)
       .input("PersonaCargo", sql.VarChar, PersonaCargo)
@@ -89,8 +88,7 @@ export const eliminarDictamenPsic = async (req, res) => {
 export const editarDictamenPsic = async (req, res) => {
   console.log(req.body)
   const { personaCargo, resolucion } = req.body;
-  try 
-  {
+  try {
     const pool = await getConnection();
     const result = await pool
       .request()
@@ -98,18 +96,18 @@ export const editarDictamenPsic = async (req, res) => {
       .input("resolucion", sql.Text, resolucion)
       .input("id", req.params.id)
       .query(querysDictamenPsic.EditarDictamenPsic);
-      if (result.rowsAffected[0] === 0) return res.status(500).json({ msg: "No se pudo Editar" });
-      res.status(200).json({ msg: "Editado" });
-  } catch (error) {    
+    if (result.rowsAffected[0] === 0) return res.status(500).json({ msg: "No se pudo Editar" });
+    res.status(200).json({ msg: "Editado" });
+  } catch (error) {
     res.status(500);
     res.send(error.message);
   }
 };
 
 
- 
 
 
 
 
-   
+
+

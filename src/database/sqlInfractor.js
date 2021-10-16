@@ -1,5 +1,5 @@
-export const querysFolios = {
-    getAllFolios: " SELECT F.IdFolioCaso, F.FechaArresto, F.HoraArresto, I.NombreCompletoInfractor, I.NumeroIdentificacion " +
+export const sqlInfractor = {
+    getAllFolios: " SELECT F.IdFolioCaso, F.FechaArresto, F.HoraArresto, I.NombreCompletoInfractor " +
         " FROM TblFolios F, TblInfractor I " +
         " WHERE 1=1 AND F.IdFolioCaso = I.IdFolioCaso ",
     addNewFolio: "INSERT INTO TblFolios (IdFolioCaso, FechaArresto, HoraArresto, FechaSalidaBarandilla, HoraSalidaBarandilla) "
@@ -19,9 +19,6 @@ export const querysFolios = {
     VALUES (@IdFolioCaso, @FechaArresto, @HoraArresto, @FechaSalidaBarandilla, @HoraSalidaBarandilla)
     INSERT INTO TblInfractor(IdFolioCaso, NombreCompletoInfractor, TipoIdentificacion, NumeroIdentificacion, Edad, Sexo, DomicilioCompleto, EstadoCivil, Escolaridad, Ocupacion, MotivoArresto)
     VALUES(@IdFolioCaso, @NombreCompletoInfractor, @TipoIdentificacion, @NumeroIdentificacion, @Edad, @Sexo, @DomicilioCompleto, @EstadoCivil, @Escolaridad, @Ocupacion, @MotivoArresto)
-    INSERT INTO TblReincidencias
-    (IdFolioCaso, NumeroIdentificacion, FechaIncidencia, NumeroRegistro)
-    VALUES(@IdFolioCaso, @NumeroIdentificacion, @FechaArresto, (SELECT COUNT(*) FROM TblReincidencias WHERE NumeroIdentificacion = @NumeroIdentificacion));
     IF(@@ERROR > 0)
     BEGIN
         Rollback Transaction
@@ -30,11 +27,11 @@ export const querysFolios = {
     BEGIN
        Commit Transaction
     END`,
-    ExisteFolioIPH: "SELECT COUNT(*) FROM TblInfractor WHERE 1=1 AND IdFolioCaso = @IdFolioCaso ",
-    getFolioById: " SELECT F.IdFolioCaso, F.FechaArresto, F.HoraArresto, I.NombreCompletoInfractor, I.NumeroIdentificacion, I.MotivoArresto " +
+    ExisteFolio: "SELECT COUNT(*) FROM TblInfractor WHERE 1=1 AND IdFolioCaso = @IdFolioCaso ",
+    getFolioById: " SELECT F.IdFolioCaso, F.FechaArresto, F.HoraArresto, I.NombreCompletoInfractor, I.MotivoArresto " +
         "FROM TblFolios F, TblInfractor I WHERE 1=1 " +
         "AND F.IdFolioCaso = I.IdFolioCaso " +
         "AND F.IdFolioCaso = @IdFolioCaso ",
-    getNumeroIncidencias: " SELECT COUNT(*) FROM TblReincidencias WHERE NumeroIdentificacion = @NumeroIdentificacion"
+    getNumeroIncidencias: " SELECT MAX(NumeroRegistro) Total FROM TblReincidencias WHERE NumeroIdentificacion = @NumeroIdentificacion"
 };
 

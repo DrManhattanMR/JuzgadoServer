@@ -7,7 +7,7 @@ import {
     // deleteProductById,
     // getTotalProducts,
     //updateProductById,
-} from "../controllers/folios.controller.js";
+} from "../controllers/infractor.controller";
 
 const router = Router();
 

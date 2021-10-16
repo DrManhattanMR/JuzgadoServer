@@ -6,7 +6,7 @@ export const getTestigosByCaso = async (req, res) => {
         const result = await pool
             .request()
             .input("IdFolioCaso", req.params.IdFolioCaso)
-            .input("IdFolioIPH", req.params.IdFolioIPH)
+            //.input("IdFolioIPH", req.params.IdFolioIPH)
             .query(querysTestigo.getTestigosByCaso);
         if (result.recordset.length > 0) {
             return res.json(result.recordset);
@@ -20,13 +20,13 @@ export const getTestigosByCaso = async (req, res) => {
     }
 };
 export const createTestigoCaso = async (req, res) => {
-    const { IdFolioCaso, IdFolioIPH, NombreCompletoTestigo, DireccionTestigo, OcupacionTestigo } = req.body;
+    const { IdFolioCaso, NombreCompletoTestigo, DireccionTestigo, OcupacionTestigo } = req.body;
     try {
         const pool = await getConnection();
         await pool
             .request()
             .input("IdFolioCaso", sql.VarChar, IdFolioCaso)
-            .input("IdFolioIPH", sql.VarChar, IdFolioIPH)
+            //.input("IdFolioIPH", sql.VarChar, IdFolioIPH)
             .input("NombreCompletoTestigo", sql.VarChar, NombreCompletoTestigo)
             .input("DireccionTestigo", sql.VarChar, DireccionTestigo)
             .input("OcupacionTestigo", sql.VarChar, OcupacionTestigo)
