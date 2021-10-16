@@ -35,6 +35,24 @@ export const querysFolios = {
         "FROM TblFolios F, TblInfractor I WHERE 1=1 " +
         "AND F.IdFolioCaso = I.IdFolioCaso " +
         "AND F.IdFolioCaso = @IdFolioCaso ",
-    getNumeroIncidencias: " SELECT COUNT(*) FROM TblReincidencias WHERE NumeroIdentificacion = @NumeroIdentificacion"
+    getNumeroIncidencias: " SELECT COUNT(*) FROM TblReincidencias WHERE NumeroIdentificacion = @NumeroIdentificacion",
+    addMultaBoleta:
+        `BEGIN TRANSACTION
+    INSERT INTO TblBoletaPago (IdFolio, FolioBoleta, MontoMulta) 
+    VALUES(@IdFolio, @FolioBoleta, @MontoMulta)
+    UPDATE TblJuzgadoCivico SET HorasArresto=@HorasArresto, NumeroSesiones=@NumeroSesiones,
+    TipoActividadComunidad = @TipoActividadComunidad WHERE IdFolio=@IdFolio
+    INSERT INTO TblInstituciones
+    (IdFolio, NombreInstitucion, RepresentanteContacto)
+    VALUES(@IdFolio, @NombreInstitucion, @RepresentanteContacto)
+    IF(@@ERROR > 0)
+    BEGIN
+        Rollback Transaction
+    END
+    ELSE
+    BEGIN
+       Commit Transaction
+    END`
+
 };
 

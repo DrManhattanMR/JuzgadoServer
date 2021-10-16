@@ -108,3 +108,43 @@ export const getFolioInfractorById = async (req, res) => {
         res.send(error.message);
     }
 };
+export const addMultaBoleta = async (req, res) => {
+    const {
+        IdFolio, FolioBoleta, MontoMulta, HorasArresto, NumeroSesiones,
+        TipoActividadComunidad, NombreInstitucion, RepresentanteContacto
+    } = req.body;
+    //let { FechaSalidaBarandilla, HoraSalidaBarandilla } = req.body;
+
+    // validating
+    if (
+        IdFolio == null ||
+        FolioBoleta == null ||
+        MontoMulta == null ||
+        HorasArresto == null ||
+        NumeroSesiones == null ||
+        TipoActividadComunidad == null ||
+        NombreInstitucion == null ||
+        RepresentanteContacto == null
+    ) {
+        return res.status(400).json({ msg: "Bad Request. Por Favor envíe todos los datos" });
+    }
+    try {
+        const pool = await getConnection();
+
+        await pool
+            .request()
+            .input("IdFolio", sql.VarChar, IdFolio)
+            .input("FolioBoleta", sql.VarChar, FolioBoleta)
+            .input("MontoMulta", sql.Decimal, MontoMulta)
+            .input("HorasArresto", sql.SmallInt, HorasArresto)
+            .input("NumeroSesiones", sql.SmallInt, NumeroSesiones)
+            .input("TipoActividadComunidad", sql.VarChar, TipoActividadComunidad)
+            .input("NombreInstitucion", sql.VarChar, NombreInstitucion)
+            .input("RepresentanteContacto", sql.VarChar, RepresentanteContacto)
+            .query(querysFolios.addMultaBoleta);
+        res.status(200).json({ msg: "Created" });
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+};
