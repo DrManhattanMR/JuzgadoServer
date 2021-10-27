@@ -87,3 +87,19 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3200/api/reincidencia/123
+
+
+###
+POST http://localhost:3200/api/usuario
+Content-Type: application/json
+
+{
+"Usuario":"5510",
+"Password":"ABC123",
+"NombreCompleto":"Emanuel Perez Cortes",
+"Direccion":"Agustina Ramirez 2013 Los Mochis Sinaloa",
+"Correo":"developermanfred@gmail.com",
+"Telefono":"9541239889"
+}
+###
+GET http://localhost:3200/api/usuario

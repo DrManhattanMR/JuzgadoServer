@@ -11,6 +11,7 @@ import testigoRoutes from "./routes/testigos.routes"
 import dictamenpsicRoutes from "./routes/dictamenpsic.routes";
 import infractorRoutes from "./routes/infractor.routes"
 import reincidenciaRoutes from "./routes/reincidencia.routes"
+import usuarioRoutes from "./routes/usuario.routers"
 import morgan from "morgan";
 
 import config from "./config";
@@ -38,4 +39,5 @@ app.use("/api", dictamenmedicoRoutes);
 app.use("/api", dictamenpsicRoutes);
 app.use("/api", infractorRoutes);
 app.use("/api", reincidenciaRoutes);
+app.use("/api", usuarioRoutes);
 export default app;

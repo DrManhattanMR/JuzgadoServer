@@ -9,4 +9,5 @@ export { querysTestigo } from "./querysTestigos";
 export { querysDictamenPsic } from "./querysDictamenPsic";
 export { sqlInfractor } from "./sqlInfractor";
 export { sqlReincidencia } from "./sqlReincidencia";
+export { sqlUsuario } from "./sqlUsuario";
 
