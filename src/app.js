@@ -12,6 +12,7 @@ import dictamenpsicRoutes from "./routes/dictamenpsic.routes";
 import infractorRoutes from "./routes/infractor.routes"
 import reincidenciaRoutes from "./routes/reincidencia.routes"
 import usuarioRoutes from "./routes/usuario.routers"
+import loginRoutes from "./routes/login.routes"
 import morgan from "morgan";
 
 import config from "./config";
@@ -40,4 +41,5 @@ app.use("/api", dictamenpsicRoutes);
 app.use("/api", infractorRoutes);
 app.use("/api", reincidenciaRoutes);
 app.use("/api", usuarioRoutes);
+app.use("/api", loginRoutes);
 export default app;

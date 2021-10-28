@@ -1,4 +1,5 @@
 import { getConnection, sqlUsuario, sql } from "../database";
+
 export const createUsuario = async (req, res) => {
     const { Usuario, Password, NombreCompleto, Direccion, Correo, Telefono } = req.body;
     const hash = require('crypto').createHash('sha256').update(Password, 'utf8').digest('hex');
@@ -78,3 +79,4 @@ export const updateUsuario = async (req, res) => {
         res.send(error.message);
     }
 };
+
