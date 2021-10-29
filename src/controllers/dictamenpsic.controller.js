@@ -105,11 +105,3 @@ export const editarDictamenPsic = async (req, res) => {
     res.send(error.message);
   }
 };
-
-
- 
-
-
-
-
-   
