@@ -7,3 +7,7 @@ export { querysIdentificacion } from "./querysIdentificacion";
 export { querysDictamenMedico } from "./querysDictamenMedico";
 export { querysDictamenPsic } from "./querysDictamenPsic";
 export { querysTestigo } from "./querysTestigos";
+export { sqlInfractor } from "./sqlInfractor";
+export { sqlReincidencia } from "./sqlReincidencia";
+export { sqlUsuario } from "./sqlUsuario";
+

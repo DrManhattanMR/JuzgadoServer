@@ -1,9 +1,9 @@
 export const querysTestigo = {
-    getTestigosByCaso: " SELECT IdTestigo, IdFolioCaso, IdFolioIPH, NombreCompletoTestigo, DireccionTestigo, OcupacionTestigo " +
+    getTestigosByCaso: " SELECT IdTestigo, IdFolioCaso, NombreCompletoTestigo, DireccionTestigo, OcupacionTestigo " +
         " FROM TblTestigos WHERE 1 = 1 AND " +
-        " IdFolioCaso = @IdFolioCaso AND IdFolioIPH =@IdFolioIPH ",
+        " IdFolioCaso = @IdFolioCaso ",
     postTestigo: " INSERT INTO TblTestigos " +
-        " (IdFolioCaso, IdFolioIPH, NombreCompletoTestigo, DireccionTestigo, OcupacionTestigo) " +
-        " VALUES (@IdFolioCaso, @IdFolioIPH, @NombreCompletoTestigo, @DireccionTestigo, @OcupacionTestigo) ",
+        " (IdFolioCaso, NombreCompletoTestigo, DireccionTestigo, OcupacionTestigo) " +
+        " VALUES (@IdFolioCaso, @NombreCompletoTestigo, @DireccionTestigo, @OcupacionTestigo) ",
     deleteTestigo: " DELETE FROM TblTestigos WHERE IdTestigo = @id"
 }

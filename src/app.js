@@ -9,6 +9,10 @@ import helperRoutes from "./routes/helpers.routers";
 import dictamenmedicoRoutes from "./routes/dictamenmedico.routes";
 import dictamenpsicRoutes from "./routes/dictamenpsic.routes";
 import testigoRoutes from "./routes/testigos.routes"
+import infractorRoutes from "./routes/infractor.routes"
+import reincidenciaRoutes from "./routes/reincidencia.routes"
+import usuarioRoutes from "./routes/usuario.routers"
+import loginRoutes from "./routes/login.routes"
 import morgan from "morgan";
 
 import config from "./config";
@@ -34,4 +38,8 @@ app.use("/api", identificacionRoutes);
 app.use("/api", dictamenpsicRoutes);
 app.use("/api", dictamenmedicoRoutes);
 app.use("/api", testigoRoutes);
+app.use("/api", infractorRoutes);
+app.use("/api", reincidenciaRoutes);
+app.use("/api", usuarioRoutes);
+app.use("/api", loginRoutes);
 export default app;

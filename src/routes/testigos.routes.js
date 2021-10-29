@@ -3,7 +3,7 @@ import { getTestigosByCaso, createTestigoCaso, eliminarTestigo } from "../contro
 
 const router = Router();
 
-router.get("/testigo/:IdFolioCaso/:IdFolioIPH", getTestigosByCaso);
+router.get("/testigo/:IdFolioCaso", getTestigosByCaso);
 //router.get("/testigo", getAllDictamenesMedicos);
 router.post("/testigo", createTestigoCaso);
 router.delete("/testigo/:id", eliminarTestigo);
