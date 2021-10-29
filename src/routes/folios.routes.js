@@ -2,7 +2,8 @@ import { Router } from "express";
 import {
     getAllFolios,
     createNewFolio,
-    AgregarInfractor
+    AgregarInfractor,
+    getFolioInfractorById
     // deleteProductById,
     // getTotalProducts,
     //updateProductById,
@@ -16,7 +17,7 @@ router.get("/folios", getAllFolios);
 
 router.post("/folios", AgregarInfractor);
 
-//router.get("/folios/:id", getProductById);
+router.get("/folios/:IdFolioCaso/:IdFolioIPH", getFolioInfractorById);
 
 // router.delete("/products/:id", deleteProductById);
 

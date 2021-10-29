@@ -24,7 +24,7 @@ export const getDictamenMedico = async (req, res) => {
             return res.json(result.recordset[0]);
         }
         else {
-            return res.status(500).json({ msg: "No existe Dictamen" });
+            return res.status(500).json({ msg: "No existe Dictamen Médico, Favor de Solicitarlo" });
         }
     } catch (error) {
         res.status(500);

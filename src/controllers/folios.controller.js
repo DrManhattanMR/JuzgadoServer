@@ -33,57 +33,58 @@ export const createNewFolio = async (req, res) => {
             .input("HoraSalidaBarandilla", sql.Time, HoraArresto)
             .query(querysFolios.addNewFolio);
 
-        res.status(200).json({ msg:"Created" });
+        res.status(200).json({ msg: "Created" });
     } catch (error) {
         res.status(500);
         res.send(error.message);
     }
 };
-export const AgregarInfractor=async(req,res)=>{
-    let { IdFolioCaso, IdFolioIPH, FechaArresto, HoraArresto, FechaSalidaBarandilla, HoraSalidaBarandilla, 
-        NombreCompletoInfractor, TipoIdentificacion, NumeroIdentificacion, Edad, Sexo, DomicilioCompleto, 
-        EstadoCivil, Escolaridad, Ocupacion } = req.body;
-        try {
-            const pool2 = await getConnection();
-            let resultado = await pool2.request()
-                .input("IdFolioCaso", sql.VarChar, IdFolioCaso)
-                .input("IdFolioIPH", sql.VarChar, IdFolioIPH)
-                .query(querysFolios.ExisteFolioIPH)
-            console.log(resultado.recordset[0][""]);
-            if (resultado.recordset[0][""]>0){
-                return res.status(500).json({ msg: "El Folio del Caso o Folio IPH ya existe" });
-                //throw new Error('Folio existente');
-            }
-            const pool = await getConnection();
-            await pool
-                .request()
-                .input("IdFolioCaso", sql.VarChar, IdFolioCaso)
-                .input("IdFolioIPH", sql.VarChar, IdFolioIPH)
-                .input("FechaArresto", sql.Date, FechaArresto)
-                .input("HoraArresto", sql.Time, HoraArresto)
-                .input("FechaSalidaBarandilla", sql.Date, FechaSalidaBarandilla)
-                .input("HoraSalidaBarandilla", sql.Time, HoraSalidaBarandilla)
-                .input("NombreCompletoInfractor",sql.VarChar,NombreCompletoInfractor)
-                .input("TipoIdentificacion",sql.SmallInt,TipoIdentificacion)
-                .input("NumeroIdentificacion",sql.VarChar,NumeroIdentificacion)
-                .input("Edad",sql.SmallInt,Edad)
-                .input("Sexo",sql.Bit,Sexo)
-                .input("DomicilioCompleto",sql.VarChar,DomicilioCompleto)
-                .input("EstadoCivil",sql.SmallInt,EstadoCivil)
-                .input("Escolaridad",sql.SmallInt,Escolaridad)
-                .input("Ocupacion",sql.VarChar,Ocupacion)
-                .query(querysFolios.NuevoInfractor)
-            res.status(200).json({ msg: "Created" });
-        } 
-        catch (error) {
-            res.status(500);
-            res.send(error.message);
-            //transaction.rollback();
+export const AgregarInfractor = async (req, res) => {
+    let { IdFolioCaso, IdFolioIPH, FechaArresto, HoraArresto, FechaSalidaBarandilla, HoraSalidaBarandilla,
+        NombreCompletoInfractor, TipoIdentificacion, NumeroIdentificacion, Edad, Sexo, DomicilioCompleto,
+        EstadoCivil, Escolaridad, Ocupacion, MotivoArresto } = req.body;
+    try {
+        const pool2 = await getConnection();
+        let resultado = await pool2.request()
+            .input("IdFolioCaso", sql.VarChar, IdFolioCaso)
+            .input("IdFolioIPH", sql.VarChar, IdFolioIPH)
+            .query(querysFolios.ExisteFolioIPH)
+        console.log(resultado.recordset[0][""]);
+        if (resultado.recordset[0][""] > 0) {
+            return res.status(500).json({ msg: "El Folio del Caso o Folio IPH ya existe" });
+            //throw new Error('Folio existente');
         }
+        const pool = await getConnection();
+        await pool
+            .request()
+            .input("IdFolioCaso", sql.VarChar, IdFolioCaso)
+            .input("IdFolioIPH", sql.VarChar, IdFolioIPH)
+            .input("FechaArresto", sql.Date, FechaArresto)
+            .input("HoraArresto", sql.Time, HoraArresto)
+            .input("FechaSalidaBarandilla", sql.Date, FechaSalidaBarandilla)
+            .input("HoraSalidaBarandilla", sql.Time, HoraSalidaBarandilla)
+            .input("NombreCompletoInfractor", sql.VarChar, NombreCompletoInfractor)
+            .input("TipoIdentificacion", sql.SmallInt, TipoIdentificacion)
+            .input("NumeroIdentificacion", sql.VarChar, NumeroIdentificacion)
+            .input("Edad", sql.SmallInt, Edad)
+            .input("Sexo", sql.Bit, Sexo)
+            .input("DomicilioCompleto", sql.VarChar, DomicilioCompleto)
+            .input("EstadoCivil", sql.SmallInt, EstadoCivil)
+            .input("Escolaridad", sql.SmallInt, Escolaridad)
+            .input("Ocupacion", sql.VarChar, Ocupacion)
+            .input("MotivoArresto", sql.VarChar, MotivoArresto)
+            .query(querysFolios.NuevoInfractor)
+        res.status(200).json({ msg: "Created" });
+    }
+    catch (error) {
+        res.status(500);
+        res.send(error.message);
+        //transaction.rollback();
+    }
 
 };
 export const ExisteFolio = async (req, res) => {
-    let { IdFolioCaso, IdFolioIPH} = req.body;
+    let { IdFolioCaso, IdFolioIPH } = req.body;
     const pool = await getConnection();
     await pool.request()
         .input("IdFolioCaso", sql.VarChar, IdFolioCaso)
@@ -91,4 +92,19 @@ export const ExisteFolio = async (req, res) => {
         .query(querysFolios.NuevoInfractor)
     console.log(result);
     res.json(result.recordset[0][""]);
+};
+export const getFolioInfractorById = async (req, res) => {
+    try {
+        const pool = await getConnection();
+
+        const result = await pool
+            .request()
+            .input("IdFolioCaso", req.params.IdFolioCaso)
+            .input("IdFolioIPH", req.params.IdFolioIPH)
+            .query(querysFolios.getFolioById);
+        return res.json(result.recordset[0]);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
 };

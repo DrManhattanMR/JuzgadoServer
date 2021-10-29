@@ -6,3 +6,4 @@ export { querysEstadoCivil } from "./querysEstadoCivil";
 export { querysIdentificacion } from "./querysIdentificacion";
 export { querysDictamenMedico } from "./querysDictamenMedico";
 export { querysDictamenPsic } from "./querysDictamenPsic";
+export { querysTestigo } from "./querysTestigos";
